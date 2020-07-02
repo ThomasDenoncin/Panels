@@ -1,0 +1,45 @@
+.scores {
+    width: 33%;
+    margin: 10px auto 20px;
+    padding: 10px;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+}
+.scores > div {
+    padding: 0 30px;
+}
+.score.blink {
+    color: #5CB85C;
+    animation: blinker 1s linear infinite;
+}
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+
+.panels {
+    width: 33%;
+    margin: 10px auto;
+    padding: 5px;
+    background-color: #dee2e6;
+}
+
+.panel {
+    width: 25%;
+    padding: 20px;
+    background-color: #fff;
+    border: solid 1px #dee2e6;
+}
+.panel:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+.panel.red {
+    background-color: #D9534F;
+    cursor: pointer;
+}

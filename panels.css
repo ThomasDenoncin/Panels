@@ -39,7 +39,30 @@
     display: block;
     padding-bottom: 100%;
 }
+.panel.white {
+    background-color: #fff;
+}
 .panel.red {
     background-color: #D9534F;
-    cursor: pointer;
+}
+.panel.green {
+    background-color: #0f0;
+}
+.panel.blue {
+    background-color: #00f;
+}
+.panel.yellow {
+    background-color: #ff0;
+}
+.panel.cyan {
+    background-color: #0ff;
+}
+.panel.magenta {
+    background-color: #f0f;
+}
+.panel.black {
+    background-color: #000;
+}
+.panel.grey {
+    background-color: #999;
 }

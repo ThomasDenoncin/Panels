@@ -5,6 +5,9 @@
     const GamesList = document.querySelector('.game-selector > select');
 
     let grid = [];
+    let gameState = {
+        state: null
+    }
 
     const Games = {
         footBallGame : function() {
@@ -61,6 +64,8 @@
                 Score.classList.add('blink');
             })
 
+            gameState.state = 'running';
+
             const colors = [
                 'red',
                 'green',
@@ -82,7 +87,7 @@
                 panel.secretColor = randomColor;
                 panel.click = (e) => {
                     const panel = grid.filter(panel => panel.id === e.target.id)[0];
-                    if (panel.state === 'ready') {
+                    if (panel.state === 'ready' && gameState.state === 'running') {
                         let buildingGrid = [...grid];
 
                         let waitingPanel = grid.filter(panel => panel.state === 'waiting')[0];
@@ -104,6 +109,8 @@
                                     buildingGrid[grid.indexOf(waitingPanel)].state = 'validated';    
                                 }
                             } else {
+                                gameState.state = 'pending';
+
                                 setTimeout(() => {
                                     let buildingGrid = [...grid];
                                     buildingGrid[grid.indexOf(panel)].state = 'ready';
@@ -112,6 +119,7 @@
                                     buildingGrid[grid.indexOf(waitingPanel)].color = 'white';
                                     grid = buildingGrid;
                                     renderGrid();
+                                    gameState.state = 'running';
                                 }, 2000);
 
                             }
@@ -156,13 +164,15 @@
         reset();
     }
 
-    function generateGrid() {
+    function generateGrid(color, state) {
+        color = color || 'white';
+        state = state || 'ready';
         let buildingGrid = [];
         for (let i = 0; i < 16; i++) {
             buildingGrid[i] = {
                 id: 'panel'+i,
-                color: 'white',
-                state: 'ready',
+                color: color,
+                state: state,
             };
         }
         grid = buildingGrid;
@@ -171,6 +181,7 @@
     }
 
     function renderGrid() {
+        console.log(grid);
         const panels = Panels.querySelectorAll('.panel');
         for (let elt of panels) {
             elt.remove();
